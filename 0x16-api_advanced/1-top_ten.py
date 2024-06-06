@@ -1,21 +1,33 @@
 #!/usr/bin/python3
-""" Script to get the first 10 hot
-    posts on Reddit
+
 """
+importing requests module
+"""
+
 from requests import get
 
 
 def top_ten(subreddit):
-    """get first 10 hot post for a subreddit"""
-    if subreddit and type(subreddit) is str:
-        url = 'https://www.reddit.com/r/{}/hot.json'.format(subreddit)
-        headers = {'user-agent': 'my-app/0.0.1'}
-        params = {'limit': 10}
-        req = get(url, params=params, headers=headers, allow_redirects=False)
-        if req.status_code == 200:
-            data = req.json()
-            posts = data.get('data', {}).get('children', {})
-            for post in posts:
-                print(post.get('data').get('title'))
-        else:
-            print(None)
+    """
+    function that queries the Reddit API and prints the titles of the first
+    10 hot posts listed for a given subreddit
+    """
+
+    if subreddit is None or not isinstance(subreddit, str):
+        print("None")
+
+    user_agent = {'User-agent': 'Google Chrome Version 81.0.4044.129'}
+    params = {'limit': 10}
+    url = 'https://www.reddit.com/r/{}/hot/.json'.format(subreddit)
+
+    response = get(url, headers=user_agent, params=params)
+    all_data = response.json()
+
+    try:
+        raw1 = all_data.get('data').get('children')
+
+        for i in raw1:
+            print(i.get('data').get('title'))
+
+    except:
+        print("None")
