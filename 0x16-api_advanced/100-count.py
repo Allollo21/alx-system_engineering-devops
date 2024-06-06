@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-""" Module provides a function that performs recursive queries against the Reddit API."""
+""" Module for a function that queries the Reddit API recursively."""
 
 
 import requests

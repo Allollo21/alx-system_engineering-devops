@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-script that asks members of a certain Reddit subreddit questions.
+Script that queries subscribers on a given Reddit subreddit.
 """
 
 import requests
